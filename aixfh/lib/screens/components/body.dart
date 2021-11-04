@@ -1,9 +1,12 @@
-import 'dart:html';
+
 
 import 'package:flutter/material.dart';
 import 'package:shop_app/constants.dart';
 import 'package:shop_app/screens/components/splash_content.dart';
+import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 import 'package:shop_app/size_config.dart';
+
+import 'default_button.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -36,6 +39,7 @@ class _BodyState extends State<Body> {
         width: double.infinity,
         child: Column(
           children: <Widget>[
+            SizedBox(height: 15,),
             Expanded(
                 flex: 3,
                 child: PageView.builder(
@@ -53,31 +57,32 @@ class _BodyState extends State<Body> {
                 )),
             Expanded(
                 flex: 2,
-                child: Column(
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 55,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        splashData.length,
-                        (index) => buildDot(index: index),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getProportionateScreenWidth(20)),
+                  child: Column(
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 55,
                       ),
-                    ),
-                    TextButton(
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.all(16.0),
-                          primary: Colors.white,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(
+                          splashData.length,
+                          (index) => buildDot(index: index),
                         ),
-                        onPressed: () {},
-                        child: Text(
-                          "Continue",
-                          style: TextStyle(
-                              fontSize: getProportionateScreenWidth(18),
-                              color: Colors.white),
-                        ))
-                  ],
+                      ),
+                      Spacer(flex: 2,),
+                      SizedBox(
+                        height: getProportionateScreenHeight(56),
+                        width: double.infinity,
+                        child: DefaultButton(text: "Continue", onPressed: (){
+
+                        },),
+                      ),
+                      Spacer(flex: 1,),
+                    ],
+                  ),
                 ))
           ],
         ),
@@ -98,3 +103,5 @@ class _BodyState extends State<Body> {
     );
   }
 }
+
+
